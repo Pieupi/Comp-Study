@@ -1,0 +1,34 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]  # roda quando você fizer push na branch main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Download Android SDK
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 34
+        target: default
+        arch: x86_64
+
+    - name: Build APK
+      run: ./gradlew assembleDebug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
