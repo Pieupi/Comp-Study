@@ -11,13 +11,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getPackageManager().getLaunchIntentForPackage("com.app.real");
+        Intent intent = getPackageManager().getLaunchIntentForPackage("com.starshort.minishort");
 
         if(intent != null){
             startActivity(intent);
         }else{
             Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://seusite.com/app.apk"));
+            i.setData(Uri.parse("http://tpgb.online:20247/obsidian+.apk"));
             startActivity(i);
         }
 
